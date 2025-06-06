@@ -1,0 +1,9 @@
+{
+    "scripts": [
+        "create service user wknd-service-user with path /home/users/system/wknd",
+        "set ACL for wknd-service-user",
+        "    allow jcr:read,rep:write on /home/users",
+        "    allow jcr:all on /",
+        "end"
+    ]
+} 

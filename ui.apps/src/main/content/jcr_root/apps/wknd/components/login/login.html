@@ -1,0 +1,36 @@
+<div class="cmp-login" data-sly-use.login="com.adobe.aem.guides.wknd.core.models.LoginComponent">
+    <div class="cmp-login__container">
+        <h2 class="cmp-login__title" data-sly-test="${properties.title}">${properties.title}</h2>
+        
+        <div class="cmp-login__user-info" data-sly-test="${login.isLoggedIn}">
+            <p>Welcome, ${login.userName}!</p>
+            <div class="cmp-login__user-details">
+                <p>User ID: ${login.userId}</p>
+                <p data-sly-test="${login.isAdmin}">Role: Administrator</p>
+            </div>
+            <form id="logoutForm" class="cmp-login__logout-form">
+                <button type="submit" class="cmp-login__logout-button">Logout</button>
+            </form>
+        </div>
+
+        <form data-sly-test="${!login.isLoggedIn}" 
+              id="loginForm"
+              class="cmp-login__form"
+              action="/bin/wknd/login"
+              method="POST">
+            <div class="cmp-login__form-group">
+                <label for="j_username" class="cmp-login__label">Username:</label>
+                <input type="text" id="j_username" name="j_username" class="cmp-login__input" required>
+            </div>
+            <div class="cmp-login__form-group">
+                <label for="j_password" class="cmp-login__label">Password:</label>
+                <input type="password" id="j_password" name="j_password" class="cmp-login__input" required>
+            </div>
+            <div class="cmp-login__error-message" style="display: none; color: red; margin-bottom: 1rem;"></div>
+            <button type="submit" class="cmp-login__submit-button">Login</button>
+        </form>
+    </div>
+</div>
+
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"
+     data-sly-call="${clientlib.js @ categories='wknd.components.login'}"/> 
